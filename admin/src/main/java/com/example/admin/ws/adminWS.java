@@ -2,6 +2,7 @@ package com.example.admin.ws;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,7 +14,8 @@ import com.example.utils.Request;
 import com.example.utils.Response;
 
 @RestController
-@RequestMapping("admin/")
+@PreAuthorize("hasAuthority('ADMIN')")
+@RequestMapping("/api/admin/")
 public class adminWS {
 
 	@Autowired
@@ -23,7 +25,7 @@ public class adminWS {
 	protected ApplicationContext context;
 	
 	@RequestMapping(value = "service", method = RequestMethod.POST)
-	public String service(@RequestBody Request request){
+	public Response service(@RequestBody Request request){
 		Response response = new Response();
 		
 		String service = (String) request.getParams().get("service");
@@ -46,6 +48,6 @@ public class adminWS {
 		
 		processor.process(request, response);
 		
-		return (String) response.getParams().get("status");
+		return response;
 	}
 }
