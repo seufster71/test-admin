@@ -1,4 +1,4 @@
-package com.example.admin.model;
+package com.example.core.multi.model;
 
 import java.io.Serializable;
 
