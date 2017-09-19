@@ -57,7 +57,7 @@ public class AdminSvcImpl implements ServiceProcessor, AdminSvc {
 
 		jmsTemplate.convertAndSend("mailbox", new Message("etst@setise.com","Hello world"));
 		
-		WorkUnit workUnit = new WorkUnit("test","test save");
+		WorkUnit workUnit = new WorkUnit("test",(String) request.getParams().get("def"));
 		
 		metricProducer.dispatch(workUnit);
 	}

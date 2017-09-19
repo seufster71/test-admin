@@ -14,7 +14,6 @@ import com.example.utils.Request;
 import com.example.utils.Response;
 
 @RestController
-@PreAuthorize("hasAuthority('ADMIN')")
 @RequestMapping("/api/admin/")
 public class adminWS {
 

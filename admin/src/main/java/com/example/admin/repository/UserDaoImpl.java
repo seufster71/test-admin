@@ -10,7 +10,7 @@ import com.example.utils.Request;
 import com.example.utils.Response;
 
 @Repository
-@Transactional("transactionManagerMulti")
+@Transactional("transactionManagerA")
 public class UserDaoImpl implements UserDao {
 
 	@Autowired
@@ -19,8 +19,8 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void item(Request request, Response response) {
 		if (request.getParams().get("id") != null){
-			User user = em.getMulti().find(User.class, (int) request.getParams().get("id"));
-			response.getParams().put("user", user);
+			//User user = em.getMulti().find(User.class, (int) request.getParams().get("id"));
+			//response.getParams().put("user", user);
 		}
 		response.getParams().put("status", "Got it from item user repo");
 	}
@@ -33,7 +33,7 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public void save(Request request, Response response) {
 		User user = new User("Tom","Jones");
-		em.getMulti().persist(user);
+		//em.getMulti().persist(user);
 		response.getParams().put("status", "Saved in user repo " + user.getId());
 	}
 

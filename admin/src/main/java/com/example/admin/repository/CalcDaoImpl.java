@@ -10,7 +10,7 @@ import com.example.utils.Request;
 import com.example.utils.Response;
 
 @Repository
-@Transactional("transactionManagerB")
+@Transactional("transactionManagerA")
 public class CalcDaoImpl implements CalcDao {
 
 	@Autowired
@@ -19,8 +19,8 @@ public class CalcDaoImpl implements CalcDao {
 	@Override
 	public void item(Request request, Response response) {
 		if (request.getParams().get("id") != null){
-			Userb user = em.getMain().find(Userb.class, (int) request.getParams().get("id"));
-			response.getParams().put("user", user);
+			//Userb user = em.getMain().find(Userb.class, (int) request.getParams().get("id"));
+			//response.getParams().put("user", user);
 		}
 		response.getParams().put("status", "Got it from item calc repo");
 	}
@@ -34,7 +34,7 @@ public class CalcDaoImpl implements CalcDao {
 	@Override
 	public void save(Request request, Response response) {
 		Userb user = new Userb("Tom","Jones");
-		em.getMain().persist(user);
+		//em.getMain().persist(user);
 		response.getParams().put("status", "Saved in calc repo " + user.getId());
 	}
 
