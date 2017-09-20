@@ -44,9 +44,9 @@ public class MultiHttpSecurityConfig {
 		protected void configure(HttpSecurity http) throws Exception {
 			http.csrf().disable()
             .authorizeRequests()
-				.antMatchers("/", "/login/**", "/libs/**", "/public/**").permitAll()
-				.antMatchers("/test/**").hasAuthority("PRIVATE")
-				.antMatchers("/admin/**").hasAuthority("ADMIN")
+				.antMatchers("/", "/login/**", "/libs/**", "/public/**", "/admin/**").permitAll()
+			//	.antMatchers("/test/**").hasAuthority("PRIVATE")
+			//	.antMatchers("/admin/**").hasAuthority("ADMIN")
 				.anyRequest().authenticated()
             .and()
             .formLogin()

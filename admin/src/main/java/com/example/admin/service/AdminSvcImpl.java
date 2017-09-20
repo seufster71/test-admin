@@ -55,9 +55,9 @@ public class AdminSvcImpl implements ServiceProcessor, AdminSvc {
 	public void save(Request request, Response response) {
 		adminDao.save(request, response);
 
-		jmsTemplate.convertAndSend("mailbox", new Message("etst@setise.com","Hello world"));
+		jmsTemplate.convertAndSend("mailbox", new Message("etst@setise.com",(String) request.getParams().get("jms")));
 		
-		WorkUnit workUnit = new WorkUnit("test",(String) request.getParams().get("def"));
+		WorkUnit workUnit = new WorkUnit("test",(String) request.getParams().get("kafka"),request.getParams());
 		
 		metricProducer.dispatch(workUnit);
 	}
